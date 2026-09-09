@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management MVP</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Firebase V8 SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+</head>
+<body>
+
+    <!-- Auth Screen -->
+    <div id="auth-screen" class="container">
+        <h2>Library Login / Register</h2>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <select id="role">
+            <option value="student">Student</option>
+            <option value="librarian">Librarian</option>
+        </select>
+        <button onclick="login()">Login</button>
+        <button onclick="register()" class="secondary">Register</button>
+        <p id="auth-error" class="error"></p>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboard" class="container hidden">
+        <header>
+            <h2>Welcome, <span id="user-email"></span> (<span id="user-role"></span>)</h2>
+            <button onclick="logout()" class="secondary">Logout</button>
+        </header>
+
+        <!-- Librarian Panel -->
+        <div id="librarian-panel" class="card hidden">
+            <h3>Add New Book</h3>
+            <input type="text" id="book-title" placeholder="Book Title">
+            <input type="text" id="book-author" placeholder="Author">
+            <button onclick="addBook()">Add Book</button>
+        </div>
+
+        <!-- Book Lists -->
+        <div class="lists-container">
+            <div class="card">
+                <h3>Available Books</h3>
+                <ul id="available-books"></ul>
+            </div>
+            <div class="card">
+                <h3 id="borrowed-title">Borrowed Books</h3>
+                <ul id="borrowed-books"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
